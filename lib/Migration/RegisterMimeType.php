@@ -4,14 +4,15 @@ namespace OCA\DICOMViewer\Migration;
 
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 
 class RegisterMimeType implements IRepairStep {
-    protected $logger;
+    protected LoggerInterface $logger
     private $customMimetypeMapping;
 
-    public function __construct(ILogger $logger) {
-        $this->logger = $logger;
+    public function __construct(
+        protected LoggerInterface $logger
+    ) {
 
         // Define the custom mimetype mapping
         $this->customMimetypeMapping = array(
